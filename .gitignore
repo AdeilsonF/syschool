@@ -20,3 +20,11 @@ config/database.yml
 
 # Ignore Byebug command history file.
 .byebug_history
+
+*.gem
+*.rbc
+/.config
+capybara-*.html
+.rspec
+/public/system
+/spec/tmp
