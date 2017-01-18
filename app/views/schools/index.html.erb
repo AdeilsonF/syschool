@@ -1,0 +1,11 @@
+<h1>School index page</h1>
+<br/>
+<% @schools.each do |school| %>
+  Escola: <%= school.name %><br/>
+  Email: <%= school.email %><br/>
+  <%= link_to 'detalhes', school_path(school) %>
+  <%= link_to 'excluir', school_path(school),method: :delete, data: { confirm: 'Tem certeza?' } %>
+  <%= link_to 'editar', edit_school_path(school) %>
+  <hr/>
+<% end %>
+<%= link_to 'Criar', new_school_path %>
