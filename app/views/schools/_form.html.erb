@@ -1,8 +1,14 @@
-<%= simple_form_for @school do |s| %>
-  <%= s.input :name, label: 'Nome da escola' %>
-  <%= s.input :email, label: 'Email', placeholder: 'user@domain.com' %>
-  <%= s.input :pitch, label: 'Pitch' %>
-  <%= s.input :subdomain, label: 'Subdominio' %>
+<%= simple_form_for(@school) do |f| %>
+  <%= f.error_notification %>
 
-  <%= s.button :submit, 'Enviar' %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :pitch %>
+    <%= f.input :subdomain %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
 <% end %>

@@ -3,7 +3,9 @@
 <p>pitch: <%= @school.pitch %></p>
 <p>subdominio: <%= @school.subdomain %></p>
 
-
-
-
+<h2>Cursos disponiveis </h2>
+<% @school.courses.each do |course| %>
+  <p>Curso: <%= course.title %> | Duração: <%= course.duration %> Ano |
+    Valor(R$): <%= course.price %> </p>
+<% end %>
 <%= link_to 'voltar', schools_path %>
