@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :school do
-    name "MyString"
-    email "MyString"
+    name { FFaker::Education.school }
+    email { FFaker::Internet.email }
     pitch "MyString"
-    subdomain "MyString"
+    subdomain { FFaker::Internet.domain_name }
   end
 end

@@ -1,15 +1,10 @@
-<%= simple_form_for(@course) do |f| %>
+<%= simple_form_for ([@school, @school.courses.build ]) do |f| %>
   <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :content %>
-    <%= f.input :duration %>
-    <%= f.input :school_id %>
-    <%= f.input :price %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  
+  <%= f.input :title %>
+  <%= f.input :description, as: :text %>
+  <%= f.input :content, as: :text %>
+  <%= f.input :price, as: :decimal %>
+  <%= f.input :duration %>
+  <%= f.submit 'Criar' %>
 <% end %>

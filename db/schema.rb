@@ -10,16 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122201113) do
+ActiveRecord::Schema.define(version: 20170126175505) do
 
   create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title"
-    t.string   "content"
-    t.integer  "duration"
+    t.string   "title",                                                               null: false
+    t.text     "description",     limit: 255,                                         null: false
+    t.text     "content",         limit: 255,                                         null: false
+    t.string   "duration",                                                            null: false
+    t.integer  "active_students",                                     default: 0
+    t.decimal  "price",                       precision: 7, scale: 2, default: "0.0"
     t.integer  "school_id"
-    t.decimal  "price",      precision: 7, scale: 2
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
+    t.index ["school_id"], name: "index_courses_on_school_id", using: :btree
   end
 
   create_table "schools", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
