@@ -1,5 +1,7 @@
 class SchoolsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_school, only: [:show, :edit, :update, :destroy]
+
 
   # GET /schools
   # GET /schools.json
@@ -14,7 +16,11 @@ class SchoolsController < ApplicationController
 
   # GET /schools/new
   def new
-    @school = School.new
+    if !current_user.school
+      @school = School.new
+    else
+      redirect_to edit_school_path(current_user.school.id)
+    end
   end
 
   # GET /schools/1/edit
@@ -25,6 +31,7 @@ class SchoolsController < ApplicationController
   # POST /schools.json
   def create
     @school = School.new(school_params)
+    @school.user_id = current_user.id if current_user
 
     respond_to do |format|
       if @school.save

@@ -3,5 +3,6 @@ class School < ApplicationRecord
   validates :email, format: { with: /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i }
   validates :subdomain, format: { with: /\A[-a-z0-9_\.]+(subdomain.com)\z/i }
 
+  belongs_to :user
   has_many :courses
 end
