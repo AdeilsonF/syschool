@@ -10,19 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126175505) do
+ActiveRecord::Schema.define(version: 20170201132927) do
 
   create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",                                                               null: false
-    t.text     "description",     limit: 255,                                         null: false
-    t.text     "content",         limit: 255,                                         null: false
-    t.string   "duration",                                                            null: false
-    t.integer  "active_students",                                     default: 0
-    t.decimal  "price",                       precision: 7, scale: 2, default: "0.0"
+    t.string   "title"
+    t.decimal  "price",                     precision: 10
+    t.text     "description", limit: 65535
     t.integer  "school_id"
-    t.datetime "created_at",                                                          null: false
-    t.datetime "updated_at",                                                          null: false
-    t.index ["school_id"], name: "index_courses_on_school_id", using: :btree
+    t.integer  "duration"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",                                  null: false
+    t.integer  "book_chapter",               default: 0
+    t.text     "description",  limit: 65535
+    t.integer  "course_id"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.index ["course_id"], name: "index_lessons_on_course_id", using: :btree
   end
 
   create_table "schools", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

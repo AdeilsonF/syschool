@@ -1,13 +1,38 @@
-<p>nome: <%= @school.name %></p>
-<p>email: <%= @school.email %></p>
-<p>pitch: <%= @school.pitch %></p>
-<p>subdominio: <%= @school.subdomain %></p>
+<p id="notice"><%= notice %></p>
 
-<h1>Cursos cadastrados</h1>
-<%= render @school.courses %>
+<p>
+  <strong>Name:</strong>
+  <%= @school.name %>
+</p>
 
-<h1>Adicionar novo curso</h1>
+<p>
+  <strong>Email:</strong>
+  <%= @school.email %>
+</p>
 
-<%= link_to 'Adicionar curso', new_school_course_path(@school) %>
+<p>
+  <strong>Pitch:</strong>
+  <%= @school.pitch %>
+</p>
 
-<%= link_to 'voltar', schools_path %>
+<p>
+  <strong>Subdomain:</strong>
+  <%= @school.subdomain %>
+</p>
+
+<% unless @school.courses.empty? %>
+  <h2>Nossos cursos</h2>
+  <% @school.courses.each do |course| %>
+    <%= course.title %>
+    <%= course.price %>
+    <%= link_to 'Detalhes', course_path %>
+    <br/>
+  <% end %>
+<% else %>
+  <p>Nenhum curso cadastrado.</p>
+<% end %>
+<br/>
+<%= link_to 'Novo curso', new_course_path %>
+
+<%= link_to 'Edit', edit_school_path(@school) %> |
+<%= link_to 'Back', schools_path %>
